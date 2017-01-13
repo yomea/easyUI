@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#combo').combo({
+				required:true,
+				width:300,
+				multiple:true,
+				separator:','
+			});
+			
+			var panel = $('#combo').combo('panel');
+			$('#fav').appendTo(panel);
+			
+			$('.type').click(function() {
+				var str = "";
+				var val = "";
+				$('.type').each(function(index,element) {
+					
+					if(element.checked) {
+						var value = $(this).val();
+						var text = $(this).next('span').text();
+						str += text + " ";
+						val += value + " ";
+						val += value + " ";
+						
+					}
+					
+					
+					
+				});
+			
+				$('#combo').combo('setValue',val);
+				$('#combo').combo('setText',str);
+				
+			});
+			
+			
+			//$()
+			$('#combo').combo('hidePanel');
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	<!--  css 加载方式 -->
+	
+	
+	
+	<!--  js 加载方式 -->
+	<input id="combo" name="fav" />
+	<div id="fav">
+		<p>请选择你喜欢的计算机语言</p>
+		<input class="type" type="checkbox" value="01" /><span>java</span><br />
+		<input class="type" type="checkbox" value="02" /><span>javascript</span><br />
+		<input class="type" type="checkbox" value="03" /><span>jquery</span><br />
+		<input class="type" type="checkbox" value="04" /><span>php</span><br />
+	</div>
+</body>
+</html>

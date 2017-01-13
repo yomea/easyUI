@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+	<script>
+		$(function() {
+			
+			//$("#box").dialog();
+			//必须指定的父元素
+			$.parser.parse("#box");
+			
+		});
+		//针对于css ui加载方式,必须放在dom解析完成之前调用
+		$.parser.auto = false;
+		//在所有easyui开始解析前绑定事件
+		$.parser.onComplete = function(context) {
+				alert("easyui加载完成！");
+			};
+	
+	</script>
+	
+</head>
+<body>
+	<div  id="box">
+	  <div title="标题" class="easyui-dialog" style="width:500px; height:500px;">
+		hello world!
+	  </div>
+	<div>
+</body>
+</html>

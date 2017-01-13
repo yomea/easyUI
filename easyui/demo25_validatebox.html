@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			/**
+			 * 扩展校验规则			 
+			 */
+			$.extend($.fn.validatebox.defaults.rules, {
+				minLength: {
+					validator: function(value, param){
+						return value.length >= param[0];
+					},
+					message: '请输入至少{0}个字符。'
+				}
+			});
+		
+		
+			$('#email').validatebox({
+				required:true,
+				missingMessage:'请不要输入空值',
+				validType:['email','minLength[10]'],
+			});
+			
+			console.log($('#email').validatebox('options'));
+			
+			$(document).on('dblclick',function() {
+				var flag = $('#email').validatebox('isValid');
+				if(flag) {
+					alert('校验通过');
+				}else {
+					alert('校验失败');
+				}
+			});
+			
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	<!--  css 加载方式 -->
+	
+	
+	
+	<!--  js 加载方式 -->
+	<form method="post" action="#">
+	
+		<label for="email">email:</label>
+		<input id="email" placeholder="双击查看校验结果" name="email" /><br />
+		<input type="submit" value="提交" />
+	</form>
+	
+</body>
+</html>

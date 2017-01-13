@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css"> 
+	<style>
+		
+	</style>
+
+	
+	
+</head>
+<body>
+	
+	<div id="login">
+		<form id="form" align="center" style="margin-top:80px;">
+			<div style="margin-bottom:20px;">
+				<label for="username" >用户:</label>
+				<input id="username" /><br />
+			</div>
+			<div>
+				<label for="password" >密码:</label>
+				<input id="password" />
+			</div>
+		</form>
+	</div>
+	<div id="btn" style="text-align:center">
+		<a href="#" id="submit">login</a>
+	
+	</div>
+</body>
+
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		 //继承自textbox
+		$(document).ready(function() {
+			
+			$('#login').dialog({
+				title:'登陆窗口',
+				width:400,
+				height:300,
+				modal: true,
+				buttons:'#btn',
+				closable:false
+				
+			
+			});
+			
+			$(document).on('click', function() {
+				$('#login').dialog('center');
+			});
+			
+			$('#username').validatebox({
+			
+				required:true,
+				validType:'length[2,5]',
+				type:'text'
+			
+			});
+			
+			$('#password').validatebox({
+			
+				required:true,
+				validType:'length[6,10]',
+				type:'password'
+			
+			});
+			
+			if(!$('#username').validatebox('isValid')){
+					$('#username').focus();
+				} else if(!$('#password').validatebox('isValid')) {
+					$('#password').focus();
+				} 
+			
+			$('#submit').linkbutton({
+				width:100,
+			});
+			
+			$('#submit').on('click',function() {
+				if(!$('#username').validatebox('isValid')){
+					$('#username').focus();
+				} else if(!$('#password').validatebox('isValid')) {
+					$('#password').focus();
+				} else {
+					$.ajax({
+						url:'',
+						type:'POST',
+						data:{
+							username:$('#username').val(),
+							password:$('#password').val()
+						},
+						beforeSend:function() {
+							$.messager.progress({
+								width:300,
+								text:'login...'
+								
+							});
+						},
+						success:function(data,response,status) {
+							$.messager.progress('close');
+							if(data.success) {
+								location.href="demo46_treegrid.html";
+							} else {
+								$.messager.alert('warning','用户名或者密码错误',"warning");
+							}
+						}
+						
+					});
+				}
+			});
+			
+		});
+		
+		
+			
+		
+	</script>
+
+</html>

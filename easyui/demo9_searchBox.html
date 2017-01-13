@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#ss').searchbox({
+				width:500,//搜索框的长度
+				height:200,//搜索框的高度
+				value:'默认的字符串值！',
+				searcher:function(value,name){
+					alert(value + "," + name)
+				},//点击搜索按钮时调用的方法
+				menu:'#mm',//下拉选择框的id
+				prompt:'Please Input Value'//搜索框中默认现实的文字
+			});
+			
+			var m = $('#ss').searchbox('menu');
+			console.log(m);//拿到的是jquery对象
+			var item1 = m.menu('findItem', 'All News');
+			var item2 = m.menu('findItem', 'Sports News');
+			console.log(item1);//Object {name: "sports", text: "Sports News", onclick: null, target: div.menu-item}
+			console.log(item2);
+			m.menu('setIcon', {
+				target: item1.target,
+				iconCls: 'icon-save'
+			});//改变item1的icon图标
+			
+			$('#ss').searchbox('selectName', 'sports');//Select the current searching type name.
+			
+			var textBox = $('#ss').searchbox('textbox');//取得搜索框jquery对象
+			console.log(textBox.val());
+			
+			var val = $('#ss').searchbox('getValue');//取得搜索框的值
+			console.log(val);
+			
+			var searchName = $('#ss').searchbox('getName');//取得当前搜索类型的名字
+			console.log(searchName);
+			
+		//	$('#ss').searchbox('destroy');//销毁搜索框
+			
+		});
+		
+			function qq(value,name){
+				alert(value+":"+name)
+			}
+		
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css 加载方式 -->
+	<input  class="easyui-searchbox" style="width:300px"
+        data-options="searcher:qq,prompt:'Please Input Value',menu:'#m1'"></input>
+        
+	<div id="m1" style="width:120px">
+		<div data-options="name:'all',iconCls:'icon-ok',selected:true">All News</div>
+		<div data-options="name:'sports'">Sports News</div>
+	</div>
+	
+	<!-- js 加载方式 -->
+	
+	<input id="ss" style="width:300px"></input>
+        
+	<div id="mm" style="width:120px">
+		<div data-options="name:'all',iconCls:'icon-ok'">All News</div>
+		<div data-options="name:'sports'">Sports News</div>
+	</div>
+	
+</body>
+</html>

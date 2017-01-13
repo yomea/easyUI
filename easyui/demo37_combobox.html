@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+			$('#cc').combobox({
+				//url:'combobox_data.json',
+				valueField:'value',
+				textField:'label',
+				showItemIcon:true,
+				iconCls:'icon-add',
+				//groupField:'',分组域
+				//onSelect: function(rec){
+				//	var url = 'get_data2.php?id='+rec.id;
+				//	$('#cc2').combobox('reload', url);
+				//},
+				data:[{
+					label: 'java',
+					value: 'Java'
+				},{
+					label: 'perl',
+					value: 'Perl'
+				},{
+					label: 'ruby',
+					value: 'Ruby'
+				}],
+				filter:function(q, row){
+					var opt = $('#cc').combobox('options');
+					return row[opt.textField].indexOf(q) >= 0;
+				},
+			});
+			
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css加载方式 -->
+	<select class="easyui-combobox" name="film" style="width:300px;">
+		<option value='1'>美人鱼</option>
+		<option value='2'>九龙诀</option>
+		<option value='3'>九层妖塔</option>
+		<option value='4'>天堂口</option>
+		<option value='5'>天将雄师</option>
+	</select>
+	
+	<input class="easyui-combobox" name="dept"
+    data-options="valueField:'id',textField:'text',url:'get_data.php'">
+	
+	<!-- js加载方式 -->
+	
+	<input id="cc" name="dept" />
+	
+	
+</body>
+</html>

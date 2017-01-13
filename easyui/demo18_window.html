@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('.option').panel({
+				iconCls:'icon-mini-add'
+			
+			});
+			
+			$('#window').window('center');
+			//$('#window').window('move',{left:100,top:300});
+			$('#window').window('collapse');
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- layout布局管理一般使用 css 加载方式 -->
+	<div id="window" class="easyui-window" title="css与js混合加载窗口" data-options="closable:true,width:500,height:250" >
+		<div class="easyui-layout" data-options="fit:true">
+			<div title="south frame" data-options="region:'south',split:true,border:false" style="text-align:right; padding:20px 20px 0 0;">
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="width:100px;outline:none">ok</a>
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:100px;outline:none">cancel</a>
+			</div>
+			<div title="west frame" data-options="region:'west',split:true">
+				<div class="easyui-accordion" data-options="fit:true">
+					<div class="option" data-options="closable:true,title:'option1'">option1</div>
+					<div class="option" data-options="closable:true,title:'option1'">option1</div>
+					<div class="option" data-options="closable:true,title:'option1'">option1</div>
+					<div class="option" data-options="closable:true,title:'option1'">option1</div>
+					<div class="option" data-options="closable:true,title:'option1'">option1</div>
+				</div>
+			
+			</div>
+			<div title="center frame" data-options="region:'center',split:true">
+				<div class="easyui-tabs" data-options="fit:true">
+					<div title="tab1" data-options="closable:true">tab1</div>
+					<div title="tab2" data-options="closable:true">tab2</div>
+					<div title="tab3" data-options="closable:true">tab3</div>
+					<div title="tab4" data-options="closable:true">tab4</div>
+					<div title="tab5" data-options="closable:true">tab5</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+		
+			$.messager.defaults = {
+				ok:'确定',
+				cancel:'取消'
+			}
+		
+			//$.messager.ok = 'Cancel';
+			
+			$.messager.confirm('确认','确认删除吗?',function(flag){
+				if(flag) {
+					alert('已删除!');
+				}
+				
+				
+			});
+			
+			/*
+			$.messager.alert('警告','不允许这么做！','warning',function(){
+				alert('关闭');
+			});
+
+			
+			$.messager.prompt('确认','请输入姓名！',function(info){
+				if(info) {
+					alert('您的姓名是:' + info);
+				}
+				
+				
+			});
+			
+			$.messager.progress({
+				title:'hello',
+				msg:'world!',
+				text:'{value}%',
+				interval:200
+			});
+			
+			window.setTimeout(function() {
+			
+				$.messager.progress('close')
+				
+			},2000);
+			
+			*/
+			
+		});
+		
+			
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!--  css 加载方式 -->
+		
+	
+	<!--  js 加载方式 -->
+	
+	
+</body>
+</html>

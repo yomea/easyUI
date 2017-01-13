@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('body').layout({
+				onCollapse:function() {
+					alert('some panel is collapsed');//只对外围的panel才有效果，对于center内的panel无效
+				}
+			});
+			
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body class="easyui-layout">
+	<!-- layout布局管理一般使用 css 加载方式 -->
+	<div data-options="region:'north',title:'North Title',split:true, closable:true, href:'hello.html'" style="height:100px;"></div>
+    <div data-options="region:'south',title:'South Title',split:true, collapsible:true, collapsedContent: function(title){
+	var region = $(this).panel('options').region;
+	if (region == 'north' || region == 'south'){
+		return title;
+	} else {
+		return '<div class='+'mytitle' + '>'+title+'</div>';
+	}
+}" style="height:100px;">sakdjflasdjfl</div>
+    <div data-options="region:'east',title:'East',split:true" style="width:100px;"></div>
+    <div data-options="region:'west',title:'West',split:true ,expandMode:'dock'" style="width:100px;"></div>
+    <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
+		 <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'west',collapsed:true,title:'hello'" style="width:180px"></div>
+            <div data-options="region:'center',title:'world'"></div>
+        </div>
+	
+	</div>
+	
+</body>
+</html>

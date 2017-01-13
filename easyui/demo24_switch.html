@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#checkbox1').switchbutton({
+				checked:true,
+				handleWidth:10,//设置操作把的大小
+				reversed:true,//互换off与on的位置
+				handleText:'~',
+				value:'开',//button的值生成的代码：<input class="switchbutton-value" type="checkbox" value="开">
+				onChange: function(checked) {
+				//alert(checked);
+					if(checked) {
+						$('#tip').html('打开');
+					}else {
+						$('#tip').html('关闭');
+					}
+					
+				}
+				
+			});
+			
+			
+			//console.log($('#checkbox1').switchbutton('options'));
+			$('#checkbox1').switchbutton('clear');//清除默认选中
+			$('#checkbox1').switchbutton('setValue',1);
+			$('#checkbox1').switchbutton('resize',{
+				width:300,
+				height:200
+			});
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	<!--  css 加载方式 -->
+	
+	<input class="easyui-switchbutton" checked>
+	<input class="easyui-switchbutton" data-options="onText:'Yes',offText:'No'">
+	
+	<!--  js 加载方式 -->
+	
+	<input id="checkbox1" />
+	
+	<div id="tip"></div>
+	
+	
+	
+</body>
+</html>

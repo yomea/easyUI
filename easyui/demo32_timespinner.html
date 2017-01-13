@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+		
+			$.fn.timespinner.defaults.formatter = function(date){
+				if (!date){return '';}
+				var opts = $(this).timespinner('options');
+				var tt = [formatN(date.getHours()), formatN(date.getMinutes())];
+				if (opts.showSeconds){
+					tt.push(formatN(date.getSeconds()));
+				}
+				return tt.join(opts.separator);
+				
+				function formatN(value){
+					return (value < 10 ? '0' : '') + value;
+				}
+			};//格式化显示时的样子
+		
+			$.fn.timespinner.defaults.parser = function(s){
+				var opts = $(this).timespinner('options');
+				if (!s){return null;}
+				var tt = s.split(opts.separator);
+				return new Date(2016, 7, 12, 
+					parseInt(tt[0],10)||0, parseInt(tt[1],10)||0, parseInt(tt[2],10)||0);
+			};//解析后的字符串setValue
+		
+		
+			$('#spinner').timespinner({
+				required:true,
+				iconCls:'icon-add',
+				validType:'email',
+				value:'00:00:00',
+				showSeconds:true,
+				selections:[[0,2],[3,5],[6,8]],//当点击时间时选择哪几个数字高亮，要不你改下试试
+				/*
+				spin:function(down) {
+					alert(down);
+				
+				},
+				*/
+				onSpinUp:function() {
+					console.log('向上微调');
+				},
+				onSpinDown:function() {
+					console.log('向下微调');
+				}
+			
+			});
+			
+			console.log($('#spinner').timespinner('options'));
+			console.log($('#spinner').timespinner('getHours'));
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	<input id="spinner" />
+	
+</body>
+</html>

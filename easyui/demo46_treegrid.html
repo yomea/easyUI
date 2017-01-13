@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		 //继承自textbox
+		$(document).ready(function() {
+			$('#treegrid').treegrid({
+				url:'tree.json',
+				idField:'id',
+				striped:true,
+				treeField:'text',//定义需要进行树形结构展现的字段
+				fitColumns:true,
+				columns:[[
+					{
+						field:'text',
+						width:100,
+						title:'描述',
+						sortable:true,
+						editor:{
+							type:'validatebox',
+							options:{
+								required:true,
+								min:3
+							}
+						}
+					},
+					{
+						field:'date',
+						title:'时间',
+						width:100,
+						sortable:true
+					}
+				]],
+				onDblClickCell:function(field,row) {
+					$(this).treegrid('beginEdit',row.id);
+				}
+			});
+			
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	
+	<!-- js加载方式 -->
+	<table id="treegrid" style="width:600px;height:400px;"></table>
+	
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#tooltip').tooltip({
+				showEvent: 'click',
+				hideEvent: 'dblclick',
+				position: 'right',
+				trackMouse:true,//在this元素的范围内随鼠标移动
+				content: '<span style="color:#fff">这是一个提示信息.</span>',
+				onShow: function(){
+					$(this).tooltip('tip').css({
+						backgroundColor: '#666',
+						borderColor: '#666'
+					});
+				}
+			});
+			
+			$('#tooltip').tooltip('update','tip被更改,单击显示，双击隐藏!')
+			
+			
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css 加载方式 -->
+	<div class="easyui-tooltip" title="这是个提示" style="text-align:center; width:300px; padding:10px; background-color:green; margin:0 auto;">哈哈</div>
+	
+	
+	<a href="#" title="This is the tooltip message." class="easyui-tooltip">Hover me</a>
+	<!-- js 加载方式 -->
+	
+	<a href="#" title="这是一个提示信息." id="tooltip">单击显示，双击隐藏</a>
+	
+</body>
+</html>

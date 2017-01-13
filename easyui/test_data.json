@@ -1,0 +1,13 @@
+[
+{"id":1,"username":"a","age":10,"sex":"男"},
+{"id":2,"username":"b","age":5,"sex":"男"},
+{"id":3,"username":"c","age":20,"sex":"男"},
+{"id":4,"username":"d","age":15,"sex":"男"},
+{"id":5,"username":"e","age":10,"sex":"男"},
+{"id":6,"username":"f","age":11,"sex":"女"},
+{"id":7,"username":"g","age":12,"sex":"女"},
+{"id":8,"username":"h","age":34,"sex":"女"},
+{"id":9,"username":"i","age":12,"sex":"女"},
+{"id":10,"username":"j","age":12,"sex":"女"},
+{"id":11,"username":"k","age":3,"sex":"女"}
+]

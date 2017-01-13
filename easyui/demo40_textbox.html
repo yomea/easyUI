@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+			$('#tb').textbox({
+				width:300,
+				prompt:'helloWorld',
+				type:'password',
+				label:$('#label'),
+				labelPosition:'top',
+				mutiline:true,
+				icons: [{
+					iconCls:'icon-add',
+					handler: function(e){
+						$(e.data.target).textbox('setValue', 'Something added!');
+					}
+				},{
+					iconCls:'icon-remove',
+					handler: function(e){
+						$(e.data.target).textbox('clear');
+					}
+				}],
+				iconCls:'icon-man',
+				iconAlign:'left',
+				buttonText:'hello',
+				onClickButton:function() {
+					console.log('hello');
+				}
+			});
+			
+			$(document).bind('click',function() {
+			
+				//$('#tb').textbox('clear');
+				console.log($('#tb').textbox('getText'));
+				console.log($('#tb').textbox('getValue'));
+				console.log(($('#tb').textbox('getIcon').selector));
+			});
+			
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css加载方式 -->
+	
+	
+	
+	<!-- js加载方式 -->
+	<label id="label" for="tb">name:</label>
+	<input id="tb" type="text" style="width:300px;" name="name">
+	
+</body>
+</html>

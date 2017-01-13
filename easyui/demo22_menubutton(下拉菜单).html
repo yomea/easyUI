@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#button').menubutton({
+				menu:'#menu',
+				text:'hello',
+				iconCls: 'icon-edit',
+				hasDownArrow:false,//那个下拉箭头
+				menuAlign:'left',
+				//toggle:true,
+				selected:true
+				
+			});
+			
+			console.log($('#button').menubutton('options'));
+			
+		});
+		
+		function exit() {
+		//alert();
+			var flag = window.confirm('确定退出吗？');
+			if(flag) {
+				$('#button').menubutton('destroy');
+			}
+		}
+			
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	
+	<!--  js 加载方式 -->
+	<a href="#" id="button"></a>
+	
+	<div id="menu">
+		<div data-options="iconCls:'icon-edit'">java</div>
+		<div>javascript</div>
+		<div>jsp</div>
+		<div class="menu-sep"></div>
+		<div data-options="onclick:exit">exit</div>
+	</div>
+	
+	
+	
+</body>
+</html>

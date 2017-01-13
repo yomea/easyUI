@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+	<!--
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+	-->
+	<script type="text/javascript" src="easyui/jQuery.min.js"></script>
+    <script type="text/javascript" src="easyui/easyloader.js"></script>
+	<!--
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	-->
+</head>
+<body>
+  <div id="box" style="width:500px; height:500px;">
+	hello world!
+  </div>
+  
+  <script type="text/javascript">
+  
+   easyloader.base = 'easyui/';    // 设置当前需要智能加载的扫描位置
+   
+   easyloader.locales = 'zh_CN';
+  
+  //手动引入一个不在easyui文件夹下的js文件
+  using('../js/index.js', function(){
+    alert('引入index.js成功！');
+	});
+   
+	$(function() {
+		easyloader.load('dialog', function() {
+			$('#box').dialog();
+		});
+		
+		
+	});
+  
+  </script>
+</body>
+</html>

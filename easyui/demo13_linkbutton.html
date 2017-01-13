@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#button1').linkbutton({
+				iconCls:'icon-add',
+				toggle: true,
+				group: 'button',
+				
+				onClick:function() {
+					alert('hello is me!');
+				}
+			
+			});
+			
+			$('#button2').linkbutton({
+				iconCls:'icon-add',
+				toggle: true,
+				group: 'button',
+				iconAlign:'right',
+				size: 'large'
+			});
+			
+			
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css 加载方式 -->
+	<a href = '#' class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="outline:none;">linkbutton</a>
+	
+	
+	<!-- js 加载方式 -->
+	
+	<a id="button1" href = '#' style="outline:none;">linkbutton</a>
+	
+	<a id="button2" href = '#' style="outline:none;">linkbutton</a>
+	
+</body>
+</html>

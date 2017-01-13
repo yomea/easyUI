@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+			$('#combogrid').combogrid({
+				width:300,
+				url:'test_data.json',
+				idField:'id',
+				textField:'username',
+				multiple:true,
+				striped:true,
+				filter: function(q, row){
+					var opts = $(this).combogrid('options');
+					return row[opts.textField].indexOf(q) >= 0;
+				},
+				columns:[[
+					{field:'username', title:'用户名', width:100, sortable:true,checkbox:true},
+					{field:'age', title:'年龄', width:100, sortable:true},
+					{field:'sex', title:'性别', width:100, sortable:true}
+				]],
+			});
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css加载方式 -->
+	
+	
+	
+	<!-- js加载方式 -->
+	
+	<input id="combogrid" name="userId" />
+	
+</body>
+</html>

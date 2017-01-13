@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		.newClass{ position: absolute;}
+		.bodyClass{ padding:10px;}
+		.headClass{ padding:10px;}
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#panel').panel({
+				title:'HelloWorld',
+				closable:true,//可关闭
+				width:500,
+				height:150,
+				iconCls:'icon-edit',//给panel增加小图标
+				left:100,
+				top:100,
+				cls:'newClass',//增加一个绝对定位
+				bodyCls:'bodyClass',//给panelbody内容部分增加样式
+				headerCls:'headClass',//给panelheader内容部分增加样式
+				style:{
+					border:'2px solid red',//给当前的panel增加样式
+					backgroundColor:'green',//这个看不到，被覆盖了
+				},
+				//fit:true,
+				border:false,
+				//doSize:false,
+				collapsible:true,//是否可折叠
+				minimizable:true,//最小化
+				maximizable:true,//最大化
+				//tools:'#tt',
+				tools:[
+				{
+					iconCls:'icon-add',
+					handler:function(){alert('add')}
+				},{
+					iconCls:'icon-edit',
+					handler:function(){alert('edit')}
+				}],//增加工具小图标按钮
+				footer:'#ft',//添加panel footer
+				openAnimation:'slide',//打开时的动画
+				closeAnimation:'slide',//关闭时的动画
+				//collapsed:true,//默认初始化时折叠的
+				href:'http:www.baidu.com',
+				loadingMessage:'加载中。。。',
+				extractor:function(data){
+				
+					alert(data);
+				},
+				
+				//loader:function(param, data, error) {
+				//alert(error);
+				
+				//},
+				
+				onLoadError:function() {
+					alert('loading fail...');
+				}
+			});
+			
+			$('#button').on('click',function(){
+				$('#panel').panel('open');
+			
+			});
+			
+			
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css 加载方式 -->
+	<div class="easyui-panel" data-options="closable:true," title="面板" style="width:500px; height:150px">
+		<header>title</header>
+		<p>panel content...</p>
+		<p>panel content...</p>
+	</div>
+	
+	<div id="tt">
+		<a href="#" class="icon-add" onclick="javascript:alert('add')"></a>
+		<a href="#" class="icon-edit" onclick="javascript:alert('edit')"></a>
+	</div>
+	
+	<button id="button">按钮</button>
+
+	
+	<!-- js 加载方式 -->
+	
+	<div id="panel">
+		<p>panel content...</p>
+		<p>panel content...</p>
+	</div>
+	
+	<div id="ft" style="padding:10px;">Footer Content</div>
+	
+</body>
+</html>

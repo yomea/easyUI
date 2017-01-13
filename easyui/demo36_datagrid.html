@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+		
+			var index = -1;
+		
+			$('#save,#edit').linkbutton('disable');
+			//不写var表示全局变量
+			obj = {
+			
+				status:false,
+				
+				redo:function(){
+					obj.status = false;
+					$('#save,#edit').linkbutton('disable');
+				//	var row = $('#dg').datagrid('getChanges','inserted');
+					
+					$('#dg').datagrid('reload');
+					index = -1;
+				},
+				
+				save:function() {
+					var flag = $('#dg').datagrid('validateRow',index);
+					if(!flag) {
+						return ;
+					}
+					if(index > -1) {
+						var editor1= $('#dg').datagrid('getEditor',{
+						index:index,
+						field:'username'
+						
+						});
+						var username = $(editor1.target).val();
+						var editor2= $('#dg').datagrid('getEditor',{
+							index:index,
+							field:'age'
+							
+						});
+						var age = $(editor2.target).numberbox('getValue');
+						var editor3= $('#dg').datagrid('getEditor',{
+							index:index,
+							field:'sex'
+							
+						});
+						var sex = $(editor3.target).val();
+						console.log(username + "-" + age + "-" + sex);
+						$('#save,#edit').linkbutton('disable');
+						$('#dg').datagrid('endEdit',index);
+						index = -1;
+						obj.status = false;
+					}
+					
+					
+					
+				},
+				
+				add:function() {
+					$('#dg').datagrid('appendRow',{
+						username: 'new name',
+						age: 30,
+						sex: '男'
+					});
+				},
+				insert:function() {
+					if(!obj.status) {
+						if(index > -1) {
+							obj.save();//可以使用endEdit,因为会触发onAfterEdit事件
+						}
+						obj.status = true;
+						$('#save,#edit').linkbutton('enable');
+					
+						$('#dg').datagrid('insertRow',{
+							index: 0,	// index start with 0
+							
+							row: {
+								username: '',
+								age: '',
+								sex: ''
+							}
+							
+						});
+						
+						$('#dg').datagrid('beginEdit',0);
+						index = 0;
+						}
+					
+				}
+			};
+		
+			$('#dg').datagrid({
+				url:'datagrid_data.json',
+				width:600,
+				title:'表格数据',
+				singleSelect:true,
+				onAfterEdit:function(index,row,changes) {
+					obj.save();
+				},
+				//checkbox:true,
+				onDblClickCell: function(ind,field,value){
+					var flag = false;
+						if(index > -1) {
+							flag = $('#dg').datagrid('validateRow',index);
+						}
+						
+						if(flag) {
+							obj.save();
+							
+						}
+					if(!obj.status) {
+						
+						index = ind;
+						$('#save,#edit').linkbutton('enable');
+						$(this).datagrid('beginEdit', ind);
+						var ed = $(this).datagrid('getEditor', {index:ind,field:field});
+						$(ed.target).focus();
+						obj.status = true;
+					}
+				},
+				/*
+				frozenColumns:[[
+					{field:'username',title:'username',width:100,align:'center',sortable:true,editor:{
+						type:'validatebox',
+						options:{
+							required:true
+						}
+					}}
+				]],
+				*/
+				columns:[[
+					
+					{field:'age',title:'age',width:100,align:'center',sortable:true,editor:{
+						type:'numberbox',
+						options:{
+							required:true,
+							min:1,
+							max:100
+						}},
+						styler: function(value,row,index){
+							if (value < 12){
+								return 'background-color:#ffee00;color:red;';//定义在这个字段中符合要求的进行特别处理
+								// the function can return predefined css class and inline style
+								// return {class:'c1',style:'color:red'}
+							}
+						}
+					},
+					{field:'sex',title:'sex',width:100,align:'center',sortable:true,editor:'validatebox',
+						formatter:function(value, row, index){
+							return row.sex;//定义在这个字段显示的内容
+						},}
+				],[
+					
+					{field:'age',title:'age',width:100,align:'center',sortable:true,editor:{
+						type:'numberbox',
+						options:{
+							required:true,
+							min:1,
+							max:100
+						}},
+						styler: function(value,row,index){
+							if (value < 12){
+								return 'background-color:#ffee00;color:red;';//定义在这个字段中符合要求的进行特别处理
+								// the function can return predefined css class and inline style
+								// return {class:'c1',style:'color:red'}
+							}
+						}
+					},
+					{field:'sex',title:'sex',width:100,align:'center',sortable:true,editor:'validatebox',
+						formatter:function(value, row, index){
+							return row.sex;//定义在这个字段显示的内容
+						},}
+				]],
+				fitColumns:true,//确保所有的列都能显示
+				toolbar: '#function',			
+				striped:true,//斑马线效果
+				/*
+				data: [
+					{username:'youth', age:22, sex:'男'},
+					{username:'hong', age:23, sex:'女'}
+				]
+				*///初始化数据
+				emptyMsg:'没有记录!',
+				pagination:true,
+				rownumbers:true,
+				pagePosition:'top',
+				pageNumber:1,
+				pageSize:5,
+				pageList:[5,10,15,20],
+				sortName:'age',
+				sortOrder:'desc',
+				remoteSort:false,
+				//queryParams:{
+				//	favfruit:'apple'
+				//}//如果有load，那么这个属性的值将被覆盖
+				onHeaderContextMenu:function(e,field) {
+					console.log(field);
+				},
+				onRowContextMenu:function(e,index,row) {
+					e.preventDefault();
+					$('#mm').menu('show', {
+						left: e.pageX,
+						top: e.pageY,
+						width:100,
+					});
+					console.log(row);
+				}
+			});
+			/*
+			$('#dg').datagrid('load',{
+				code: '01',
+				name: 'name01'
+			});
+			*/
+			
+			
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+
+	<table id="dg"></table>
+	<div id="function">
+		<div>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="obj.insert();">添加</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+			<a id="save" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="obj.save();">保存</a>
+			<a id="edit" class="easyui-linkbutton" data-options="iconCls:'icon-redo'" onclick="obj.redo();">取消编辑</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</a>
+		</div>
+		<div>
+			<label for="accout">账户:</label>
+			<input id="accout" class="easyui-validatebox" />
+			<label for="from">from:</label>
+			<input id="from" class="easyui-datebox" />
+			<label for="to">to:</label>
+			<input id="to" class="easyui-datebox" />
+		</div>
+	</div>
+	
+	<div id="mm" class="easyui-menu">
+		<div data-options="iconCls:'icon-add'">添加</div>
+		<div data-options="iconCls:'icon-edit'">修改</div>
+		<div data-options="iconCls:'icon-remove'">删除</div>
+	</div>
+	
+	
+</body>
+</html>

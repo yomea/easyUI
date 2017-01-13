@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+			$('#spinner').numberspinner({
+				required:true,
+				min:9,
+				max:1000,
+				increment:1,
+				iconCls:'icon-add',
+				validType:'email',
+				/*
+				spin:function(down) {
+					alert(down);
+				
+				},
+				*/
+				onSpinUp:function() {
+					console.log('向上微调');
+				},
+				onSpinDown:function() {
+					console.log('向下微调');
+				}
+			
+			});
+			
+			console.log($('#spinner').spinner('options'));
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	<input id="spinner" value="2" />
+	
+</body>
+</html>

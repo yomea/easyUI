@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#progressbar').progressbar({
+				value:0,//默认百分值
+				text:'%{value}',//设置百分比显示的模板
+				onChange:function(newValue, oldValue) {
+					console.log('new:' + newValue + '-old:' + oldValue);
+				}//当百分值发生改变将触发
+			});
+			
+			
+			var timer = window.setInterval(function() {
+				var oldValue = $('#progressbar').progressbar('getValue');
+				if(oldValue == 100) {
+					window.clearInterval(timer);
+				}
+				oldValue++;
+				$('#progressbar').progressbar('setValue', oldValue);
+				
+			},100);
+			
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css 加载方式 -->
+	<div style="width:400px; background-color:green;" class="easyui-progressbar" data-options="value:60"></div>
+	
+	<!-- js 加载方式 -->
+	
+	<div id="progressbar" style="width:400px"></div>
+	
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		.newClass{ position: absolute;}
+		.bodyClass{ padding:10px;}
+		.headClass{ padding:10px;}
+	</style>
+
+	<script>
+		
+		$(document).ready(function() {
+			$('#tabsbox').tabs({
+				
+				//tabWidth:300,
+				//justified:true,//试图将选项卡适合父容器的宽度
+				narrow:true,//试图出去选项卡之间的间隙
+				pill:true,//将选项卡变成胶囊风格
+				border:true,
+				width:500,
+				height:250,
+				//scrollIncrement:100,//每次移动的像素点，这个必须在tabWidth比较大的情况下使用
+				//plain:true,//脱出父元素的背景样式
+				//onSelect:function(title,index){
+					//alert(title+' is selected');
+				//},
+				//onLoad:function() {
+					//当tab panel 的ajax加载完成后触发这个事件
+			//	},
+				onUnselect:function(title, index) {
+					//当tab panel 的ajax加载完成后触发这个事件
+				//	alert(title + "||" + index);
+					
+				},
+				onBeforeClose:function(title, index) {
+					//当tab panel 的ajax加载完成后触发这个事件
+					//alert(title + "||" + index);
+					
+				},
+				onContextMenu:function(e, title,index) {
+					//alert(e.type);
+				}//右键鼠标时调用
+			});
+			
+			$('#tabsbox').tabs('add',{
+				title:'New Tab',
+				content:'Tab Body',
+				closable:true,
+				collapsible:true,
+				tools:[{
+					iconCls:'icon-mini-refresh',
+					handler:function(){
+						//alert('refresh');
+					}
+				}]
+			});
+			
+			$('#tabsbox').tabs('resize');//一般被css改变了大小后想变回初始状态时使用
+			
+			var tab = $('#tabsbox').tabs('getTab',1);
+			
+			console.log(tab);
+			
+			//$('#tabsbox').tabs('scroll', -100);
+			
+		});
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	<!-- css 加载方式 -->
+	<div id="tt" class="easyui-tabs" style="width:500px;height:250px;margin-bottom:100px;">
+		<div title="Tab1" style="padding:20px;display:none;">
+			tab1
+		</div>
+		<div title="Tab2" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+			tab2
+		</div>
+		<div title="Tab3" data-options="iconCls:'icon-reload',closable:true" style="display:none;">
+			tab3
+		</div>
+	</div>
+	
+	<!-- js 加载方式 -->
+	
+	<div id="tabsbox">
+		<div title="选项1" data-options="closable:true,iconCls:'icon-reload'">选项1</div>
+		<div title="选项2" data-options="closable:true,collapsible:true,">选项2</div>
+		<div title="选项3" data-options="closable:true">选项3</div>
+	</div>
+	
+	
+</body>
+</html>

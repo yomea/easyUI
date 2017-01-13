@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>easyuiStart</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/color.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		/**
+		 * 更多详细内容请查阅easyui的官方文档
+		 */
+		$(document).ready(function() {
+			$('#calendar').calendar({
+				width:300,
+				height:300,
+				current:new Date(2017,6,1),
+				showWeek:true,
+				weekNumberHeader:'youth',
+				/*
+				getWeekNumber:function(date) {
+					return date.getDay();
+				},
+				*/
+				//year:6060,
+				formatter:function(date) {
+					return '#' + date.getDate();
+				},
+				styler: function(date){
+					if (date.getDay() == 1){
+						return 'background-color:#ccc';
+						// the function can return predefined css class and inline style
+						// return {class:'r1', style:{'color:#fff'}};	
+					} else {
+						return '';
+					}
+				},
+				
+				validator: function(date){
+					if (date.getDay() == 1){return true;}
+					else {return false;}//return true 表示当前日期是可选状态
+				},
+				
+				
+			});
+			
+			
+			$('#calendar').calendar('moveTo', new Date(2012, 11, 1));
+			
+		});
+		
+		
+			
+		
+	</script>
+	
+</head>
+<body>
+	
+	<!--  css 加载方式 -->
+	
+	
+	
+	<!--  js 加载方式 -->
+	<div id="calendar"></div>
+</body>
+</html>
